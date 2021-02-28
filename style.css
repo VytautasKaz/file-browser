@@ -24,6 +24,11 @@ table {
   width: 100%;
 }
 
+tr + tr:hover {
+  background-color: lightgray;
+  transition: 0.3s ease;
+}
+
 th,
 td {
   border: 2px solid #dddddd;
