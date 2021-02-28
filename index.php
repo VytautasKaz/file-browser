@@ -25,7 +25,7 @@
             for ($i = 0; $i < count($array); $i++) {
                 if ($array[$i] === '.' || $array[$i] === '..') continue;
                 if (is_file($array[$i])) print('<tr><td>File</td><td>' . $array[$i] . '</td><td></td><tr>');
-                if (is_dir($array[$i])) print('<tr><td>Directory</td><td>' . $array[$i] . '</td><td></td><tr>');
+                if (is_dir($array[$i])) print('<tr><td>Directory</td><td><a href="./' . $array[$i] . '">' . $array[$i] . '</td><td></td><tr>');
             }
             ?>
         </table>
