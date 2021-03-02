@@ -17,6 +17,8 @@
         $path = './' . $_GET['path'];
         $content = scandir($path);
 
+        print('<button class="back" onclick="history.go(-1);">Back</button>');
+
         print('<table>
                     <tr>
                         <th>Type</th>
@@ -54,7 +56,6 @@
             }
         }
         print('</table>');
-        print('<button class="back" onclick="history.go(-1);">Back</button>');
         ?>
     </div>
 </body>
