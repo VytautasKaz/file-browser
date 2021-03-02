@@ -36,13 +36,13 @@
             if (is_dir($content[$i])) print('<tr>
                                                 <td>Directory</td>
                                                 <td>
-                                                    <a href="' . $content[$i] . '">' . $content[$i] . '</a>
+                                                    <a href="?path=' . $content[$i] . '">' . $content[$i] . '</a>
                                                 </td>
                                                 <td></td>
                                             <tr>');
         }
         print('</table>');
-        print('<button class="back"><a href="..">Back</a></button>');
+        print('<button class="back" onclick="history.go(-1);">Back</button>');
         ?>
     </div>
 </body>
