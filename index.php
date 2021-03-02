@@ -10,34 +10,40 @@
 </head>
 
 <body>
-
     <h1>File Browser</h1>
 
     <div class="container">
-        <table>
-            <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-            <?php
-            $path = './' . $_GET['path'];
-            $content = scandir($path);
-            for ($i = 0; $i < count($content); $i++) {
-                if ($content[$i] === '.' || $content[$i] === '..') continue;
-                if (is_file($content[$i])) print('<tr>
-                                                    <td>File</td>
-                                                    <td>' . $content[$i] . '</td>
-                                                    <td><button type="submit">Delete</button></td>
-                                                <tr>');
-                if (is_dir($content[$i])) print('<tr>
-                                                    <td>Directory</td>
-                                                    <td><a href="./' . $content[$i] . '">' . $content[$i] . '</td>
-                                                    <td></td>
-                                               <tr>');
-            }
-            ?>
-        </table>
+        <?php
+        $path = './' . $_GET['path'];
+        $content = scandir($path);
+
+        print('<table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>');
+
+        for ($i = 0; $i < count($content); $i++) {
+            if ($content[$i] === '.' || $content[$i] === '..') continue;
+            if (is_file($content[$i])) print('<tr>
+                                                <td>File</td>
+                                                <td>' . $content[$i] . '</td>
+                                                <td>
+                                                    <button type="submit">Delete</button>
+                                                </td>
+                                            <tr>');
+            if (is_dir($content[$i])) print('<tr>
+                                                <td>Directory</td>
+                                                <td>
+                                                    <a href="' . $content[$i] . '">' . $content[$i] . '</a>
+                                                </td>
+                                                <td></td>
+                                            <tr>');
+        }
+        print('</table>');
+        print('<button class="back"><a href="..">Back</a></button>');
+        ?>
     </div>
 </body>
 
