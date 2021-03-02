@@ -24,6 +24,10 @@ table {
   width: 100%;
 }
 
+tr:first-of-type {
+  background-color: lightskyblue;
+}
+
 tr + tr:hover {
   background-color: lightgray;
   transition: 0.3s ease;

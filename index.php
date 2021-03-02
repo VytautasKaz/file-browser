@@ -21,11 +21,20 @@
                 <th>Actions</th>
             </tr>
             <?php
-            $array = scandir('./');
-            for ($i = 0; $i < count($array); $i++) {
-                if ($array[$i] === '.' || $array[$i] === '..') continue;
-                if (is_file($array[$i])) print('<tr><td>File</td><td>' . $array[$i] . '</td><td></td><tr>');
-                if (is_dir($array[$i])) print('<tr><td>Directory</td><td><a href="./' . $array[$i] . '">' . $array[$i] . '</td><td></td><tr>');
+            $path = './' . $_GET['path'];
+            $content = scandir($path);
+            for ($i = 0; $i < count($content); $i++) {
+                if ($content[$i] === '.' || $content[$i] === '..') continue;
+                if (is_file($content[$i])) print('<tr>
+                                                    <td>File</td>
+                                                    <td>' . $content[$i] . '</td>
+                                                    <td><button type="submit">Delete</button></td>
+                                                <tr>');
+                if (is_dir($content[$i])) print('<tr>
+                                                    <td>Directory</td>
+                                                    <td><a href="./' . $content[$i] . '">' . $content[$i] . '</td>
+                                                    <td></td>
+                                               <tr>');
             }
             ?>
         </table>
