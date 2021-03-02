@@ -27,12 +27,12 @@
         for ($i = 0; $i < count($content); $i++) {
             if ($content[$i] === '.' || $content[$i] === '..') continue;
             if (is_file($path . $content[$i])) print('<tr>
-                                                <td>File</td>
-                                                <td>' . $content[$i] . '</td>
-                                                <td>
-                                                    <button type="submit">Delete</button>
-                                                </td>
-                                            <tr>');
+                                                        <td>File</td>
+                                                        <td>' . $content[$i] . '</td>
+                                                        <td>
+                                                            <button type="submit">Delete</button>
+                                                        </td>
+                                                    </tr>');
             if (is_dir($path . $content[$i])) {
                 if (!isset($_GET['path'])) {
                     print('<tr>
@@ -41,7 +41,7 @@
                         <a href="' . $_SERVER['REQUEST_URI'] . '?path=' . $content[$i] . '/">' . $content[$i] . '</a>
                     </td>
                     <td></td>
-                <tr>');
+                </tr>');
                 } else {
                     print('<tr>
                 <td>Directory</td>
@@ -49,7 +49,7 @@
                         <a href="' . $_SERVER['REQUEST_URI'] . $content[$i] . '/">' . $content[$i] . '</a>
                     </td>
                     <td></td>
-                <tr>');
+                </tr>');
                 }
             }
         }
