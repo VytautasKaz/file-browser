@@ -33,6 +33,10 @@ tr + tr:hover {
   transition: 0.3s ease;
 }
 
+form {
+  display: inline-block;
+}
+
 th,
 td {
   border: 2px solid #dddddd;
