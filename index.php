@@ -12,7 +12,8 @@
 <body>
     <?php
     if (isset($_POST['download'])) {
-        $file = dirname(__FILE__) . '/' . $_POST['download'];
+        $file = './' . $_POST['download'];
+        print($file);
         $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
 
         ob_clean();
