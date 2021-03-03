@@ -10,6 +10,27 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_POST['download'])) {
+        $file = './' . $_POST['download'];
+        $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
+
+        ob_clean();
+        ob_start();
+        header('Content-Description: File Transfer');
+        header('Content-Type:' . mime_content_type($fileToDownloadEscaped));
+        header('Content-Disposition: attachment; filename=' . basename($fileToDownloadEscaped));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($fileToDownloadEscaped));
+        ob_end_flush();
+
+        readfile($fileToDownloadEscaped);
+        exit;
+    }
+    ?>
     <h1>File Browser</h1>
 
     <div class="container">
@@ -30,15 +51,15 @@
 
         for ($i = 0; $i < count($content); $i++) {
             if ($content[$i] === '.' || $content[$i] === '..') continue;
-            if (is_file($path . $content[$i])) print('<tr name="' . $content[$i] . '">
+            if (is_file($path . $content[$i])) print('<tr>
                                                         <td>File</td>
                                                         <td>' . $content[$i] . '</td>
                                                         <td>
                                                             <form action="" method="POST">
-                                                                <input type="submit" name="delete" value="Delete">
+                                                                <input type="submit" name="delete" value="Delete"/>
                                                             </form>
-                                                            <form action="?path="' . $content[$i] . 'method="POST">
-                                                                <input type="submit" name"download" value="Download">
+                                                            <form action="?path=' . $content[$i] . '" method="POST">
+                                                                <input type="submit" name="download" value="' . $content[$i] . '"/>
                                                             </form>
                                                         </td>
                                                     </tr>');
