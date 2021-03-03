@@ -37,13 +37,13 @@ form {
   display: inline-block;
 }
 
-form > input {
+form > button {
   background-color: #f5f5f5;
   padding: 2px 5px;
   border-radius: 5px;
 }
 
-form > input:hover {
+form > button:hover {
   cursor: pointer;
   background-color: lightskyblue;
   transition: 0.3s ease;

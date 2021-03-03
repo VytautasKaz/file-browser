@@ -56,10 +56,10 @@
                                                         <td>' . $content[$i] . '</td>
                                                         <td>
                                                             <form action="" method="POST">
-                                                                <input type="submit" name="delete" value="Delete"/>
+                                                                <button type="submit" name="delete" value="' . $content[$i] . '">Delete</button>
                                                             </form>
                                                             <form action="?path=' . $content[$i] . '" method="POST">
-                                                                <input type="submit" name="download" value="' . $content[$i] . '"/>
+                                                                <button type="submit" name="download" value="' . $content[$i] . '">Download</button>
                                                             </form>
                                                         </td>
                                                     </tr>');
