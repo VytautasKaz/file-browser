@@ -12,12 +12,14 @@
 <body>
     <?php
 
+    // Login logic
+
+
+
     // "Download" button logic
 
     if (isset($_POST['download'])) {
         $file = $_GET['path'] . $_POST['download'];
-
-        print($_GET['path']);
 
         $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
 
@@ -62,23 +64,23 @@
     if (isset($_POST['directory'])) {
         $newDir = $_GET['path'] . $_POST['directory'];
 
-        error_reporting(E_ERROR | E_PARSE);
-
-        if (empty($_POST['directory'])) {
-            print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px">Error: Directory name missing.</p>');
-        } else {
-            if (is_dir($newDir)) {
-                $folderName = '';
-                $counter = 2;
-                while (!$folderName) {
-                    if (!is_dir($newDir . "($counter)")) {
-                        $folderName = $newDir . "($counter)";
-                    }
-                    $counter++;
-                }
-                mkdir($folderName);
+        if (strpbrk($_POST['directory'], "\\/?%*:|\"<>") === FALSE) {
+            if (empty($_POST['directory'])) {
+                print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px">Error: Directory name missing.</p>');
             } else {
-                mkdir($newDir);
+                if (is_dir($newDir)) {
+                    $folderName = '';
+                    $counter = 2;
+                    while (!$folderName) {
+                        if (!is_dir($newDir . "($counter)")) {
+                            $folderName = $newDir . "($counter)";
+                        }
+                        $counter++;
+                    }
+                    mkdir($folderName);
+                } else {
+                    mkdir($newDir);
+                }
             }
         }
     }
