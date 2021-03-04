@@ -67,6 +67,7 @@ td {
 .back:hover {
   background-color: lightskyblue;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .back > a {

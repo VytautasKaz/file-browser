@@ -13,7 +13,7 @@
     <?php
     if (isset($_POST['download'])) {
         $file = './' . $_POST['download'];
-        print($file);
+
         $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
 
         ob_clean();
@@ -39,9 +39,9 @@
         $path = './' . $_GET['path'];
         $content = scandir($path);
 
-        // print('<button class="back" onclick="history.go(-1);">Back</button>');
+        print('<button class="back" onclick="history.go(-1);">Back</button>');
 
-        print('<button class="back"><a href="?path=' . $_GET['path'] . '../">Back</a></button>');
+        // print('<button class="back"><a href="?path=' . $_GET['path'] . '../">Back</a></button>');
 
         print('<table>
                     <tr>
