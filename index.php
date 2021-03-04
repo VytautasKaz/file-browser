@@ -51,7 +51,7 @@
         $path = './' . $_GET['path'];
         $content = scandir($path);
 
-        print('<button class="back" onclick="history.go(-1);">Back</button>');
+        print('<button class="back" onclick="goBack()">Back</button>');
 
         // print('<button class="back"><a href="?path=' . $_GET['path'] . '../">Back</a></button>');
 
@@ -97,6 +97,19 @@
             }
         }
         print('</table>');
+
+        print('<script>
+        function goBack() {
+            let url = window.location.href.split("/");
+            if (url[url.length-1] == "") {
+                url.splice(url.length-2, 1);
+            } else {
+                url.splice(url.length-1, 1);
+            }
+            window.location.href = url.join("/");
+            return window.location.href;
+        }
+        </script>')
         ?>
     </div>
 </body>
