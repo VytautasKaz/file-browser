@@ -56,6 +56,14 @@
             print("<script type=\"text/javascript\">alert('File uploaded successfully!')</script>");
         }
     }
+
+    // Create new dir logic
+
+    if (isset($_POST['directory'])) {
+        $newDir = $_GET['path'] . $_POST['directory'];
+        mkdir($newDir);
+    }
+
     ?>
     <h1>File Browser</h1>
 
@@ -111,11 +119,17 @@
         }
         print('</table>');
 
-        print('<form class="upload-form" action="" method="POST" enctype="multipart/form-data">
+        print('<h5>Upload a file</h5>
+               <form class="upload-form" action="" method="POST" enctype="multipart/form-data">
                     <input type="file" name="upload" />
                     <button type="submit">Upload</button>
                </form>');
 
+        print('<h5>Create a new directory</h5>
+               <form class="new-dir" action="" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="directory" placeholder="Enter directory name"/>
+                    <button type="submit">Create</button>
+               </form>');
 
         // "Back" button logic
 
