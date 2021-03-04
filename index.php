@@ -69,7 +69,7 @@
                                                         <td>' . $content[$i] . '</td>
                                                         <td>
                                                             <form action="" method="POST">
-                                                                <button type="submit" name="delete" value="' . $content[$i] . '">Delete</button>
+                                                                <button type="submit" name="delete" value="' . $content[$i] . '" onclick="return confirm(\'Are you sure?\')">Delete</button>
                                                             </form>
                                                             <form action="" method="POST">
                                                                 <button type="submit" name="download" value="' . $content[$i] . '">Download</button>
