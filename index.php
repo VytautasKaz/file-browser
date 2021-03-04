@@ -60,8 +60,16 @@
     // Create new dir logic
 
     if (isset($_POST['directory'])) {
-        $newDir = $_GET['path'] . $_POST['directory'];
-        mkdir($newDir);
+        if (is_dir($_POST['directory'])) {
+            error_reporting(E_ERROR | E_PARSE);
+            print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px;">Error: Directory name already exists.</p>');
+        }
+        if (!empty($_POST['directory'])) {
+            $newDir = $_GET['path'] . $_POST['directory'];
+            mkdir($newDir);
+        } else {
+            print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px">Error: Directory name missing.</p>');
+        }
     }
 
     ?>
@@ -126,7 +134,7 @@
                </form>');
 
         print('<h5>Create a new directory</h5>
-               <form class="new-dir" action="" method="POST" enctype="multipart/form-data">
+               <form class="new-dir" action="" method="POST">
                     <input type="text" name="directory" placeholder="Enter directory name"/>
                     <button type="submit">Create</button>
                </form>');
