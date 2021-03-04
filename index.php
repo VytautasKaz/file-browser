@@ -60,15 +60,26 @@
     // Create new dir logic
 
     if (isset($_POST['directory'])) {
-        if (is_dir($_POST['directory'])) {
-            error_reporting(E_ERROR | E_PARSE);
-            print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px;">Error: Directory name already exists.</p>');
-        }
-        if (!empty($_POST['directory'])) {
-            $newDir = $_GET['path'] . $_POST['directory'];
-            mkdir($newDir);
-        } else {
+        $newDir = $_GET['path'] . $_POST['directory'];
+
+        error_reporting(E_ERROR | E_PARSE);
+
+        if (empty($_POST['directory'])) {
             print('<p style="color: red; font-size: 20px; text-align: center; margin-top: 10px">Error: Directory name missing.</p>');
+        } else {
+            if (is_dir($newDir)) {
+                $folderName = '';
+                $counter = 2;
+                while (!$folderName) {
+                    if (!is_dir($newDir . "($counter)")) {
+                        $folderName = $newDir . "($counter)";
+                    }
+                    $counter++;
+                }
+                mkdir($folderName);
+            } else {
+                mkdir($newDir);
+            }
         }
     }
 
