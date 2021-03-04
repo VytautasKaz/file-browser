@@ -7,6 +7,10 @@ body * {
   font-family: sans-serif;
 }
 
+body {
+  background-color: #fdf8f5;
+}
+
 h1 {
   display: inline-block;
   width: 100%;
