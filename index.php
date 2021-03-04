@@ -11,8 +11,13 @@
 
 <body>
     <?php
+
+    // Download logic
+
     if (isset($_POST['download'])) {
-        $file = './' . $_POST['download'];
+        $file = $_GET['path'] . $_POST['download'];
+
+        print($_GET['path']);
 
         $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, null, 'utf-8'));
 
@@ -30,6 +35,13 @@
 
         readfile($fileToDownloadEscaped);
         exit;
+    }
+
+    // Delete logic
+
+    if (isset($_POST['delete'])) {
+        $file = $_GET['path'] . $_POST['delete'];
+        unlink($file);
     }
     ?>
     <h1>File Browser</h1>
@@ -59,7 +71,7 @@
                                                             <form action="" method="POST">
                                                                 <button type="submit" name="delete" value="' . $content[$i] . '">Delete</button>
                                                             </form>
-                                                            <form action="?path=' . $content[$i] . '" method="POST">
+                                                            <form action="" method="POST">
                                                                 <button type="submit" name="download" value="' . $content[$i] . '">Download</button>
                                                             </form>
                                                         </td>
