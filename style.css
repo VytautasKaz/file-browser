@@ -74,3 +74,7 @@ td {
   text-decoration: none;
   color: black;
 }
+
+.upload-form {
+  margin-top: 24px;
+}

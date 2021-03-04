@@ -12,7 +12,7 @@
 <body>
     <?php
 
-    // Download logic
+    // "Download" button logic
 
     if (isset($_POST['download'])) {
         $file = $_GET['path'] . $_POST['download'];
@@ -37,11 +37,24 @@
         exit;
     }
 
-    // Delete logic
+    // "Delete" button logic
 
     if (isset($_POST['delete'])) {
         $file = $_GET['path'] . $_POST['delete'];
         unlink($file);
+    }
+
+    // Upload logic
+
+    if (isset($_FILES['upload'])) {
+        $file_name = $_FILES['upload']['name'];
+        $file_size = $_FILES['upload']['size'];
+        $file_tmp = $_FILES['upload']['tmp_name'];
+        $file_type = $_FILES['upload']['type'];
+        if (!empty($file_name)) {
+            move_uploaded_file($file_tmp, $_GET['path'] . $file_name);
+            print("<script type=\"text/javascript\">alert('File uploaded successfully!')</script>");
+        }
     }
     ?>
     <h1>File Browser</h1>
@@ -98,18 +111,26 @@
         }
         print('</table>');
 
-        print('<script>
+        print('<form class="upload-form" action="" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="upload" />
+                    <button type="submit">Upload</button>
+               </form>');
+
+
+        // "Back" button logic
+
+        print('<script type="text/javascript">
         function goBack() {
             let url = window.location.href.split("/");
             if (url[url.length-1] == "") {
                 url.splice(url.length-2, 1);
             } else {
-                url.splice(url.length-1, 1);
+                url.splice(url.length-1);
             }
             window.location.href = url.join("/");
             return window.location.href;
         }
-        </script>')
+        </script>');
         ?>
     </div>
 </body>
