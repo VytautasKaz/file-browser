@@ -148,7 +148,7 @@
 
         print('<h5>Create a new directory</h5>
                <form class="new-dir" action="" method="POST">
-                    <input type="text" name="directory" placeholder="Enter directory name"/>
+                    <input type="text" name="directory" placeholder="Enter your directory name"/>
                     <button type="submit">Create</button>
                </form>');
 
