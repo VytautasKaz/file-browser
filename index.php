@@ -21,14 +21,14 @@
         && !empty($_POST['password'])
     ) {
         if (
-            $_POST['username'] == 'test-login' &&
-            $_POST['password'] == 'test-pw'
+            $_POST['username'] === 'test-login' &&
+            $_POST['password'] === 'test-pw'
         ) {
             $_SESSION['logged_in'] = true;
             $_SESSION['timeout'] = time();
             $_SESSION['username'] = $_POST['username'];
         } else {
-            print('<script type="text/javascript">alert("Wrong username or password");</script>');
+            print('<script type="text/javascript">alert("Wrong username or password.");</script>');
         }
     }
 
@@ -40,7 +40,7 @@
         unset($_SESSION['password']);
         unset($_SESSION['logged_in']);
         session_destroy();
-        print('<script type="text/javascript">alert("You have logged out successfully.");</script>');
+        print('<script type="text/javascript">alert("You have been logged out successfully.");</script>');
     }
 
     // "Download" button logic
@@ -197,7 +197,7 @@
         <script type="text/javascript">
             function goBack() {
                 let url = window.location.href.split("/");
-                if (url[url.length - 1] == "") {
+                if (url[url.length - 1] === "") {
                     url.splice(url.length - 2, 1);
                 } else {
                     url.splice(url.length - 1);
