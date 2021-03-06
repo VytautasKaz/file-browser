@@ -184,7 +184,6 @@
         } else {
             print('<h4>Enter your login information</h4>
                    <form class="login-form" action="./index.php" method="post">
-                        <h4><?php echo $msg; ?></h4>
                         <input type="text" name="username" placeholder="username = test-login" required><br>
                         <input type="password" name="password" placeholder="password = test-pw" required><br>
                         <button class="login-btn" type="submit" name="login">Login</button>
