@@ -2,16 +2,13 @@
 
 Create a simple file browser that allows you to perform these tasks:
 
+- Basic authentication (login/logout; login info provided as placeholders in the login form);
 - Browse inner folders;
 - Being able to go up one level of a folder by clicking "Back" button;
-- Upload a file;
 - Create a new directory;
-- Delete a file;
-- Download a file.
-
-## Remaining objectives:
-
-- Add authentication (login/logout).
+- Upload a file;
+- Download a file;
+- Delete a file.
 
 ## Author:
 
