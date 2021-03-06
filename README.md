@@ -1,6 +1,6 @@
 ## Description:
 
-Create a simple file browser that allows you to perform these tasks:
+A simple file browser that allows you to perform these tasks:
 
 - Basic authentication (login/logout; login info provided as placeholders in the login form);
 - Browse inner folders;
