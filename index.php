@@ -14,7 +14,34 @@
 
     // Login logic
 
+    session_start();
+    if (
+        isset($_POST['login'])
+        && !empty($_POST['username'])
+        && !empty($_POST['password'])
+    ) {
+        if (
+            $_POST['username'] == 'test-login' &&
+            $_POST['password'] == 'test-pw'
+        ) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['timeout'] = time();
+            $_SESSION['username'] = $_POST['username'];
+        } else {
+            print('<script type="text/javascript">alert("Wrong username or password");</script>');
+        }
+    }
 
+    // Logout logic
+
+    if (isset($_GET['action']) == 'logout') {
+        session_start();
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        unset($_SESSION['logged_in']);
+        session_destroy();
+        print('<script type="text/javascript">alert("You have logged out successfully.");</script>');
+    }
 
     // "Download" button logic
 
@@ -86,6 +113,7 @@
     }
 
     ?>
+
     <h1>File Browser</h1>
 
     <div class="container">
@@ -93,20 +121,20 @@
         $path = './' . $_GET['path'];
         $content = scandir($path);
 
-        print('<button class="back" onclick="goBack()">Back</button>');
+        if ($_SESSION['logged_in'] == true) {
 
-        // print('<button class="back"><a href="?path=' . $_GET['path'] . '../">Back</a></button>');
+            print('<button class="back" onclick="goBack()">Back</button>');
 
-        print('<table>
+            print('<table>
                     <tr>
                         <th>Type</th>
                         <th>Name</th>
                         <th>Actions</th>
                     </tr>');
 
-        for ($i = 0; $i < count($content); $i++) {
-            if ($content[$i] === '.' || $content[$i] === '..') continue;
-            if (is_file($path . $content[$i])) print('<tr>
+            for ($i = 0; $i < count($content); $i++) {
+                if ($content[$i] === '.' || $content[$i] === '..') continue;
+                if (is_file($path . $content[$i])) print('<tr>
                                                         <td>File</td>
                                                         <td>' . $content[$i] . '</td>
                                                         <td>
@@ -118,55 +146,66 @@
                                                             </form>
                                                         </td>
                                                     </tr>');
-            if (is_dir($path . $content[$i])) {
-                if (!isset($_GET['path'])) {
-                    print('<tr>
+                if (is_dir($path . $content[$i])) {
+                    if (!isset($_GET['path'])) {
+                        print('<tr>
                             <td>Directory</td>
                                 <td>
                                     <a href="' . $_SERVER['REQUEST_URI'] . '?path=' . $content[$i] . '/">' . $content[$i] . '</a>
                                 </td>
                             <td></td>
                            </tr>');
-                } else {
-                    print('<tr>
+                    } else {
+                        print('<tr>
                             <td>Directory</td>
                                 <td>
                                     <a href="' . $_SERVER['REQUEST_URI'] . $content[$i] . '/">' . $content[$i] . '</a>
                                 </td>
                             <td></td>
                            </tr>');
+                    }
                 }
             }
-        }
-        print('</table>');
+            print('</table>');
 
-        print('<h5>Upload a file</h5>
+            print('<h5>Upload a file</h5>
                <form class="upload-form" action="" method="POST" enctype="multipart/form-data">
                     <input type="file" name="upload" />
                     <button type="submit">Upload</button>
                </form>');
 
-        print('<h5>Create a new directory</h5>
+            print('<h5>Create a new directory</h5>
                <form class="new-dir" action="" method="POST">
                     <input type="text" name="directory" placeholder="Enter your directory name"/>
                     <button type="submit">Create</button>
                </form>');
 
-        // "Back" button logic
-
-        print('<script type="text/javascript">
-        function goBack() {
-            let url = window.location.href.split("/");
-            if (url[url.length-1] == "") {
-                url.splice(url.length-2, 1);
-            } else {
-                url.splice(url.length-1);
-            }
-            window.location.href = url.join("/");
-            return window.location.href;
+            print('<p class="logout-line">Click <a href = "?action=logout">here</a> to logout.</p>');
+        } else {
+            print('<h4>Enter your login information</h4>
+                   <form class="login-form" action="./index.php" method="post">
+                        <h4><?php echo $msg; ?></h4>
+                        <input type="text" name="username" placeholder="username = test-login" required><br>
+                        <input type="password" name="password" placeholder="password = test-pw" required><br>
+                        <button class="login-btn" type="submit" name="login">Login</button>
+                   </form>');
         }
-        </script>');
         ?>
+
+        <!-- "Back" button logic -->
+
+        <script type="text/javascript">
+            function goBack() {
+                let url = window.location.href.split("/");
+                if (url[url.length - 1] == "") {
+                    url.splice(url.length - 2, 1);
+                } else {
+                    url.splice(url.length - 1);
+                }
+                window.location.href = url.join("/");
+                return window.location.href;
+            }
+        </script>
     </div>
 </body>
 
