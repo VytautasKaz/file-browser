@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="shortcut icon" href="./favicon.png" type="img/png">
+    <link rel="shortcut icon" href="./img/favicon.png" type="img/png">
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -119,7 +119,7 @@
 
     ?>
 
-    <h1>File Browser</h1>
+    <h1><a href="https://www.youtube.com/watch?v=jVhlJNJopOQ" target="_blank"><img src="./img/header.PNG" alt="header-img"></a></h1>
 
     <div class="container">
         <?php
@@ -187,12 +187,12 @@
 
             print('<p class="logout-line">Click <a href = "?action=logout">here</a> to logout.</p>');
         } else {
-            print('<h4>Enter your login information</h4>
+            print('<div align="center"><h4>Enter your login information</h4>
                    <form class="login-form" action="./index.php" method="post">
                         <input type="text" name="username" placeholder="username = test-login" required><br>
                         <input type="password" name="password" placeholder="password = test-pw" required><br>
                         <button class="login-btn" type="submit" name="login">Login</button>
-                   </form>');
+                   </form></div>');
         }
         ?>
 
