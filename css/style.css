@@ -28,7 +28,7 @@ table {
   width: 100%;
 }
 
-tr:first-of-type {
+th {
   background-color: lightskyblue;
 }
 
