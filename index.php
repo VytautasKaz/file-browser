@@ -82,7 +82,7 @@
         $file_tmp = $_FILES['upload']['tmp_name'];
         $file_type = $_FILES['upload']['type'];
         if (!empty($file_name)) {
-            if (is_file($file_name)) {
+            if (is_file($_GET['path'] . $file_name)) {
                 print("<script type=\"text/javascript\">alert('Unable to upload a file with a name that already exists.')</script>");
             } else {
                 move_uploaded_file($file_tmp, $_GET['path'] . $file_name);
