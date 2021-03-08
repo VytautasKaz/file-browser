@@ -130,7 +130,7 @@
 
             print('<button class="back" onclick="goBack()">Back</button>');
 
-            print('<table class="sortable">
+            print('<table>
                     <tr>
                         <th>Type</th>
                         <th>Name</th>
@@ -210,10 +210,6 @@
                 return window.location.href;
             }
         </script>
-
-        <!-- 3rd party script -->
-
-        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
     </div>
 </body>
 
